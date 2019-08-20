@@ -4,11 +4,10 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-
+  - https://github.com/reserva-co/bookings_module
+  - https://github.com/reserva-co/reviews_module
+  - https://github.com/reserva-co/location_module
+  - https://github.com/reserva-co/photo_module
 ## Table of Contents
 
 1. [Usage](#Usage)
