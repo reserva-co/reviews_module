@@ -61,35 +61,35 @@ const years = [2016, 2017, 2018];
 const db = mongoose.connection;
 
 const reviewSchema = new mongoose.Schema({
+  accuracy: Number,
+  checkIn: Number,
+  cleanliness: Number,
+  communication: Number,
   custName: String,
   custPic: String,
   date: String,
-  reviewText: String,
-  totalScore: Number,
-  accuracy: Number,
-  location: Number,
-  communication: Number,
-  checkIn: Number,
-  cleanliness: Number,
-  value: Number,
   host: String,
   hostPic: String,
+  location: Number,
+  reserva_id: Number,
   responseText: String,
-  reserva_id: Number 
+  reviewText: String,
+  totalScore: Number,
+  value: Number
 })
 
 const Review = mongoose.model('Review', reviewSchema);
 
-const getRandomInt = (max, min) => {
+const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * max + min);
 }
 
 const getUser = () => {
-  return users[getRandomInt(50, 0)];
+  return users[getRandomInt(0, 50)];
 }
 
 const getDate = () => {
-  const date = `${faker.date.month()} ${years[getRandomInt(3, 0)]}`;
+  const date = `${faker.date.month()} ${years[getRandomInt(0, 3)]}`;
   return date
 }
 
@@ -99,7 +99,8 @@ const getText = () => {
 }
 
 const getScore = () => {
-  const score = getRandomInt(5, 0);
+  const score = getRandomInt(0, 6);
+  return score;
 }
 
 db.on('error', console.error.bind(console, 'connection error: '));
@@ -107,8 +108,8 @@ db.once('open', function() {
 
   console.log('Seeding data to MongoDB');
 
-  for (var i = 1; i < 101; i++) {
-    let totalReviews = getRandomInt(21, 7);
+  for (var i = 1; i < 100; i++) {
+    let totalReviews = getRandomInt(6, 26);
     let host = getUser();
     let responses = Math.floor(totalReviews * .3);
     let responseCount = 0;
