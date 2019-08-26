@@ -11,8 +11,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.listen(port, () => console.log('listening on port 3000'));
 
 
-app.get('/api/reviews/1', function (req, res) {
-  db.find(1, (reviews, err)=> {
+app.get('/api/reviews/:id', function (req, res) {
+  let id = req.params.id;
+  db.find(id, (reviews, err)=> {
     if (err) {
       console.log(err);
     } else {
