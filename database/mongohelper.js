@@ -105,7 +105,7 @@ const getScore = () => {
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', function() {
 
-  console.log('Connected to MongoDB');
+  console.log('Seeding data to MongoDB');
 
   for (var i = 1; i < 101; i++) {
     let totalReviews = getRandomInt(21, 7);
@@ -130,17 +130,3 @@ db.once('open', function() {
     }
   }
 })
-
-const find = (id, callback) => {
-  Review.find({reserva_id: id}).exec(
-    function(err, reviews) {
-      if (err) {
-        return console.log(err);
-      } else {
-        return callback(reviews);
-      }
-    }
-  );
-}
-
-module.exports.find = find;
