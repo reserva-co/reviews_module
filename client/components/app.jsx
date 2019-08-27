@@ -1,13 +1,30 @@
+/* eslint-disable no-console */
+/* eslint-disable import/extensions */
 import React from 'react';
+import $ from 'jquery';
+import ReviewList from './reviewlist.jsx';
 
 class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      reviews: [],
+    };
+  }
+
+  componentDidMount() {
+    $.get('/api/reviews/1', (reviews) => {
+      console.log('working');
+      this.setState({ reviews });
+    });
+  }
 
   render() {
+    const { reviews } = this.state;
     return (
-      <div>hello world</div>
+      <div>
+        <ReviewList reviews={reviews} />
+      </div>
     );
   }
 }
