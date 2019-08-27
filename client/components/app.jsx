@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 import React from 'react';
 import $ from 'jquery';
@@ -14,7 +13,6 @@ class App extends React.Component {
 
   componentDidMount() {
     $.get('/api/reviews/1', (reviews) => {
-      console.log('working');
       this.setState({ reviews });
     });
   }
