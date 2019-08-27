@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
-const faker = require('faker');
-mongoose.connect('mongodb://localhost/reserva', {useNewUrlParser:true});
+
+mongoose.connect('mongodb://localhost/reserva', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function() {
+db.once('open', () => {
   console.log('Connected to MongoDB');
-})
+});
 
 const reviewSchema = new mongoose.Schema({
   custName: String,
@@ -24,21 +25,20 @@ const reviewSchema = new mongoose.Schema({
   host: String,
   hostPic: String,
   responseText: String,
-  reserva_id: Number 
-})
+  reserva_id: Number,
+});
 
 const Review = mongoose.model('Review', reviewSchema);
 
 const find = (id, callback) => {
-  Review.find({reserva_id: id}).exec(
-    function(err, reviews) {
+  Review.find({ reserva_id: id }).exec(
+    (err, reviews) => {
       if (err) {
         return console.log(err);
-      } else {
-        return callback(reviews);
       }
-    }
+      return callback(reviews);
+    },
   );
-}
+};
 
 module.exports.find = find;
