@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly with no props 1`] = `
+<styled.div>
+  <styled.div
+    style={
+      Object {
+        "borderBottomColor": "#e4e4e4",
+        "borderBottomStyle": "solid",
+        "borderBottomWidth": "1px",
+      }
+    }
+  >
+    <styled.h2>
+      0 Reviews
+    </styled.h2>
+    <div
+      style={
+        Object {
+          "marginLeft": "15px",
+          "marginTop": "25px",
+        }
+      }
+    >
+      <StarRatings
+        changeRating={null}
+        className="main-star"
+        gradientPathName=""
+        ignoreInlineStyles={false}
+        name="rating"
+        numberOfStars={5}
+        rating={0}
+        starDimension="20px"
+        starEmptyColor="rgb(203, 211, 227)"
+        starHoverColor="rgb(230, 67, 47)"
+        starRatedColor="teal"
+        starSpacing="7px"
+        svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+        svgIconViewBox="0 0 51 48"
+        typeOfWidget="Star"
+      />
+    </div>
+  </styled.div>
+  <styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.h3>
+          Accuracy
+        </styled.h3>
+        <div
+          style={
+            Object {
+              "float": "right",
+              "marginLeft": "15px",
+              "marginTop": "10px",
+            }
+          }
+        >
+          <StarRatings
+            changeRating={null}
+            className="secondary-star"
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            name="rating"
+            numberOfStars={5}
+            rating={0}
+            starDimension="20px"
+            starEmptyColor="rgb(203, 211, 227)"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="teal"
+            starSpacing="7px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+        </div>
+      </styled.div>
+      <styled.div>
+        <styled.h3>
+          Communication
+        </styled.h3>
+        <div
+          style={
+            Object {
+              "float": "right",
+              "marginLeft": "15px",
+              "marginTop": "10px",
+            }
+          }
+        >
+          <StarRatings
+            changeRating={null}
+            className="secondary-star"
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            name="rating"
+            numberOfStars={5}
+            rating={0}
+            starDimension="20px"
+            starEmptyColor="rgb(203, 211, 227)"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="teal"
+            starSpacing="7px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+        </div>
+      </styled.div>
+      <styled.div>
+        <styled.h3>
+          Cleanliness
+        </styled.h3>
+        <div
+          style={
+            Object {
+              "float": "right",
+              "marginLeft": "15px",
+              "marginTop": "10px",
+            }
+          }
+        >
+          <StarRatings
+            changeRating={null}
+            className="secondary-star"
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            name="rating"
+            numberOfStars={5}
+            rating={0}
+            starDimension="20px"
+            starEmptyColor="rgb(203, 211, 227)"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="teal"
+            starSpacing="7px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+        </div>
+      </styled.div>
+    </styled.div>
+    <styled.div>
+      <styled.div>
+        <styled.h3>
+          Location
+        </styled.h3>
+        <div
+          style={
+            Object {
+              "float": "right",
+              "marginLeft": "15px",
+              "marginTop": "10px",
+            }
+          }
+        >
+          <StarRatings
+            changeRating={null}
+            className="secondary-star"
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            name="rating"
+            numberOfStars={5}
+            rating={0}
+            starDimension="20px"
+            starEmptyColor="rgb(203, 211, 227)"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="teal"
+            starSpacing="7px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+        </div>
+      </styled.div>
+      <styled.div>
+        <styled.h3>
+          Check-In
+        </styled.h3>
+        <div
+          style={
+            Object {
+              "float": "right",
+              "marginLeft": "15px",
+              "marginTop": "10px",
+            }
+          }
+        >
+          <StarRatings
+            changeRating={null}
+            className="secondary-star"
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            name="rating"
+            numberOfStars={5}
+            rating={0}
+            starDimension="20px"
+            starEmptyColor="rgb(203, 211, 227)"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="teal"
+            starSpacing="7px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+        </div>
+      </styled.div>
+      <styled.div>
+        <styled.h3>
+          Value
+        </styled.h3>
+        <div
+          style={
+            Object {
+              "float": "right",
+              "marginLeft": "15px",
+              "marginTop": "10px",
+            }
+          }
+        >
+          <StarRatings
+            changeRating={null}
+            className="secondary-star"
+            gradientPathName=""
+            ignoreInlineStyles={false}
+            name="rating"
+            numberOfStars={5}
+            rating={0}
+            starDimension="20px"
+            starEmptyColor="rgb(203, 211, 227)"
+            starHoverColor="rgb(230, 67, 47)"
+            starRatedColor="teal"
+            starSpacing="7px"
+            svgIconPath="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+            svgIconViewBox="0 0 51 48"
+            typeOfWidget="Star"
+          />
+        </div>
+      </styled.div>
+    </styled.div>
+  </styled.div>
+  <ReviewList
+    reviews={Array []}
+  />
+</styled.div>
+`;

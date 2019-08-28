@@ -2,7 +2,49 @@
 import React from 'react';
 import $ from 'jquery';
 import StarRatings from 'react-star-ratings';
+import styled from 'styled-components';
 import ReviewList from './reviewlist.jsx';
+
+const ReviewDiv = styled.div`
+  display: block;
+  box-sizing: border-box;
+`;
+
+const MainStar = styled.div`
+  display: flex;
+`;
+
+const StarBox = styled.div`
+  display: block;
+  box-sizing: border-box;
+`;
+
+const LeftBox = styled.div`
+  width: 50%;
+  float: left;
+`;
+
+const RightBox = styled.div`
+  width: 50%;
+  float: right;
+`;
+
+const SecondStar = styled.div`
+  display: flex;
+`;
+
+const MainH2 = styled.h2`
+  font-size: 24px;
+  font-weight: 800;
+  color: #484848;
+  font-style: Helvetica;
+`;
+
+const MainH3 = styled.h3`
+  font-size: 14px;
+  color: #484848;
+  font-style: Helvetica;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -10,32 +52,39 @@ class App extends React.Component {
     this.state = {
       reviews: [],
     };
+    this.getAccuracyStars.bind(this);
+    this.getCommunicationStars.bind(this);
+    this.getCleanlinessStars.bind(this);
+    this.getLocationStars.bind(this);
+    this.getCheckInStars.bind(this);
+    this.getValueStars.bind(this);
+    this.getTotalStars.bind(this);
   }
 
   componentDidMount() {
     $.get('/api/reviews/1', (reviews) => {
       this.setState({ reviews });
-      this.getTotalStars();
       this.getAccuracyStars();
       this.getCommunicationStars();
       this.getCleanlinessStars();
       this.getLocationStars();
       this.getCheckInStars();
       this.getValueStars();
+      this.getTotalStars();
     });
   }
 
   getTotalStars() {
-    const { reviews } = this.state;
-    const mainStars = [];
-    let total = 0;
-    reviews.map((review) => {
-      mainStars.push(review.totalScore);
-      total += review.totalScore;
-      return total;
-    });
-    const avg = total / mainStars.length;
+    const { accuracy } = this.state;
+    const { communication } = this.state;
+    const { cleanliness } = this.state;
+    const { location } = this.state;
+    const { checkIn } = this.state;
+    const { value } = this.state;
+    const total = accuracy + communication + cleanliness + location + checkIn + value;
+    const avg = total / 6;
     this.setState({ totalScore: avg });
+    return avg;
   }
 
   getAccuracyStars() {
@@ -118,94 +167,115 @@ class App extends React.Component {
 
   render() {
     const { reviews } = this.state;
-    const { totalScore } = this.state;
     const { accuracy } = this.state;
+    const { totalScore } = this.state;
     const { communication } = this.state;
     const { cleanliness } = this.state;
     const { location } = this.state;
     const { checkIn } = this.state;
     const { value } = this.state;
+
     return (
-      <div>
-        <div>
-          <h2>{`${reviews.length} Reviews`}</h2>
-          <StarRatings
-            className="main-star"
-            rating={totalScore}
-            starDimension="33px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-        <div>
-          <h3>Accuracy</h3>
-          <StarRatings
-            className="accuracy-star"
-            rating={accuracy}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-        <div>
-          <h3>Communication</h3>
-          <StarRatings
-            className="communication-star"
-            rating={communication}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-        <div>
-          <h3>Cleanliness</h3>
-          <StarRatings
-            className="cleanliness-star"
-            rating={cleanliness}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-        <div>
-          <h3>Location</h3>
-          <StarRatings
-            className="location-star"
-            rating={location}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-        <div>
-          <h3>Check-In</h3>
-          <StarRatings
-            className="checkin-star"
-            rating={checkIn}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
-        <div>
-          <h3>Value</h3>
-          <StarRatings
-            className="value-star"
-            rating={value}
-            starDimension="20px"
-            starRatedColor="teal"
-            numberOfStars={5}
-            name="rating"
-          />
-        </div>
+      <ReviewDiv>
+        <MainStar style={{ borderBottomStyle: 'solid', borderBottomWidth: '1px', borderBottomColor: '#e4e4e4' }}>
+          <MainH2>{`${reviews.length} Reviews`}</MainH2>
+          <div style={{ marginTop: '25px', marginLeft: '15px' }}>
+            <StarRatings
+              className="main-star"
+              rating={totalScore}
+              starDimension="20px"
+              starRatedColor="teal"
+              numberOfStars={5}
+              name="rating"
+            />
+          </div>
+        </MainStar>
+        <StarBox>
+          <LeftBox>
+            <MainStar>
+              <MainH3>Accuracy</MainH3>
+              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                <StarRatings
+                  className="secondary-star"
+                  rating={accuracy}
+                  starDimension="20px"
+                  starRatedColor="teal"
+                  numberOfStars={5}
+                  name="rating"
+                />
+              </div>
+            </MainStar>
+            <MainStar>
+              <MainH3>Communication</MainH3>
+              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                <StarRatings
+                  className="secondary-star"
+                  rating={communication}
+                  starDimension="20px"
+                  starRatedColor="teal"
+                  numberOfStars={5}
+                  name="rating"
+                />
+              </div>
+            </MainStar>
+            <MainStar>
+              <MainH3>Cleanliness</MainH3>
+              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                <StarRatings
+                  className="secondary-star"
+                  rating={cleanliness}
+                  starDimension="20px"
+                  starRatedColor="teal"
+                  numberOfStars={5}
+                  name="rating"
+                />
+              </div>
+            </MainStar>
+          </LeftBox>
+          <RightBox>
+            <SecondStar>
+              <MainH3>Location</MainH3>
+              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                <StarRatings
+                  className="secondary-star"
+                  rating={location}
+                  starDimension="20px"
+                  starRatedColor="teal"
+                  numberOfStars={5}
+                  name="rating"
+                />
+              </div>
+            </SecondStar>
+            <SecondStar>
+              <MainH3>Check-In</MainH3>
+              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                <StarRatings
+                  className="secondary-star"
+                  rating={checkIn}
+                  starDimension="20px"
+                  starRatedColor="teal"
+                  numberOfStars={5}
+                  name="rating"
+                />
+              </div>
+            </SecondStar>
+            <SecondStar>
+              <MainH3>Value</MainH3>
+              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                <StarRatings
+                  className="secondary-star"
+                  rating={value}
+                  starDimension="20px"
+                  starRatedColor="teal"
+                  numberOfStars={5}
+                  name="rating"
+                />
+              </div>
+            </SecondStar>
+          </RightBox>
+        </StarBox>
         <ReviewList reviews={reviews} />
-      </div>
+      </ReviewDiv>
     );
   }
 }

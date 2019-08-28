@@ -40,7 +40,7 @@ const users = [
   { name: 'Ramsay', pic: 'https://picsum.photos/id/1027/200' },
   { name: 'Benjen', pic: 'https://picsum.photos/id/1028/200' },
   { name: 'Samwell', pic: 'https://picsum.photos/id/1029/200' },
-  { name: 'Tormund', pic: 'https://picsum.photos/id/1030/200' },
+  { name: 'Tormund', pic: 'https://picsum.photos/id/106/200/200' },
   { name: 'Davos', pic: 'https://picsum.photos/id/1031/200' },
   { name: 'Eddard', pic: 'https://picsum.photos/id/1032/200' },
   { name: 'Ellaria', pic: 'https://picsum.photos/id/1033/200' },
@@ -56,7 +56,7 @@ const users = [
   { name: 'Ghost', pic: 'https://picsum.photos/id/1043/200' },
   { name: 'Lady', pic: 'https://picsum.photos/id/1044/200' },
   { name: 'Edmure', pic: 'https://picsum.photos/id/1045/200' },
-  { name: 'Walder', pic: 'https://picsum.photos/id/1046/200' },
+  { name: 'Walder', pic: 'https://picsum.photos/id/107/200/200' },
 ];
 
 const years = [2016, 2017, 2018];
@@ -78,7 +78,6 @@ const reviewSchema = new mongoose.Schema({
   reserva_id: Number,
   responseText: String,
   reviewText: String,
-  totalScore: Number,
   value: Number,
 });
 
@@ -117,7 +116,7 @@ db.once('open', () => {
       const date = getDate();
       if (responses !== responseCount) {
         const review = new Review({
-          custName: user.name, custPic: user.pic, date, reviewText: getText(), totalScore: getScore(), accuracy: getScore(), location: getScore(), communication: getScore(), checkIn: getScore(), cleanliness: getScore(), value: getScore(), host: host.name, hostPic: host.pic, responseText: getText(), reserva_id: i,
+          custName: user.name, custPic: user.pic, date, reviewText: getText(), accuracy: getScore(), location: getScore(), communication: getScore(), checkIn: getScore(), cleanliness: getScore(), value: getScore(), host: host.name, hostPic: host.pic, responseText: getText(), reserva_id: i,
         });
         responseCount += 1;
         review.save((err) => {
@@ -125,7 +124,7 @@ db.once('open', () => {
         });
       } else {
         const review = new Review({
-          custName: user.name, custPic: user.pic, date, reviewText: getText(), totalScore: getScore(), accuracy: getScore(), location: getScore(), communication: getScore(), checkIn: getScore(), cleanliness: getScore(), value: getScore(), host: null, hostPic: null, responseText: null, reserva_id: i,
+          custName: user.name, custPic: user.pic, date, reviewText: getText(), accuracy: getScore(), location: getScore(), communication: getScore(), checkIn: getScore(), cleanliness: getScore(), value: getScore(), host: null, hostPic: null, responseText: null, reserva_id: i,
         });
         review.save((err) => {
           if (err) return console.error(err);
