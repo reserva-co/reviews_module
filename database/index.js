@@ -15,7 +15,6 @@ const reviewSchema = new mongoose.Schema({
   custPic: String,
   date: String,
   reviewText: String,
-  totalScore: Number,
   accuracy: Number,
   location: Number,
   communication: Number,
