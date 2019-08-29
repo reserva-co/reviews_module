@@ -1,5 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const SearchForm = styled.form`
+  display: flex;
+  box-sizing: border-box;
+  float: right;
+  border: none;
+  margin-right: auto;
+`;
+
+const SearchDiv = styled.div`
+  border: 1px solid #e4e4e4;
+  width: 250px;
+  height: 25px;
+  float: right;
+  display: flex;
+  align-self: center;
+  flex-direction: row-reverse;
+`;
 
 class Search extends React.Component {
   constructor(props) {
@@ -36,16 +55,18 @@ class Search extends React.Component {
   render() {
     const { value } = this.state;
     return (
-      <div className="search-container">
-        <form onSubmit={this.handleSubmit}>
+      <SearchDiv className="search-container">
+        <SearchForm onSubmit={this.handleSubmit}>
+          <span role="img" aria-label="glass"> 🔍</span>
           <input
+            style={{ border: 'none', width: '200px' }}
             type="text"
             placeholder="Search reviews "
             value={value}
             onChange={this.handleChange}
           />
-        </form>
-      </div>
+        </SearchForm>
+      </SearchDiv>
     );
   }
 }

@@ -176,8 +176,15 @@ class App extends React.Component {
   filterReviewsBySearchedTerm() {
     const { searchedTerm } = this.state;
     const { reviews } = this.state;
-    if (searchedTerm !== null) {
-      reviews.filter((review) => review.reviewText.includes(searchedTerm));
+    const results = [];
+    if (searchedTerm) {
+      reviews.filter((review) => {
+        if (review.reviewText.indexOf(searchedTerm) > -1) {
+          results.push(review);
+        }
+        return undefined;
+      });
+      return results;
     }
     return reviews;
   }
@@ -197,7 +204,7 @@ class App extends React.Component {
       <ReviewDiv>
         <MainStar style={{ borderBottomStyle: 'solid', borderBottomWidth: '1px', borderBottomColor: '#e4e4e4' }}>
           <MainH2>{`${reviews.length} Reviews`}</MainH2>
-          <div style={{ marginTop: '25px', marginLeft: '15px' }}>
+          <div style={{ marginTop: '25px', marginLeft: '15px', marginRight: 'auto' }}>
             <StarRatings
               className="main-star"
               rating={totalScore}
@@ -294,7 +301,7 @@ class App extends React.Component {
           </RightBox>
         </StarBox>
         {reviewList.length
-          ? <ReviewList reviews={reviews} />
+          ? <ReviewList reviews={reviewList} />
           : <NoResults />}
       </ReviewDiv>
     );
