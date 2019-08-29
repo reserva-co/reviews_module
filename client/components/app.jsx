@@ -4,6 +4,8 @@ import $ from 'jquery';
 import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 import ReviewList from './reviewlist.jsx';
+import Search from './search.jsx';
+import NoResults from './noresults.jsx';
 
 const ReviewDiv = styled.div`
   display: block;
@@ -51,14 +53,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       reviews: [],
+      searchedTerm: null,
     };
-    this.getAccuracyStars.bind(this);
-    this.getCommunicationStars.bind(this);
-    this.getCleanlinessStars.bind(this);
-    this.getLocationStars.bind(this);
-    this.getCheckInStars.bind(this);
-    this.getValueStars.bind(this);
-    this.getTotalStars.bind(this);
+    this.getAccuracyStars = this.getAccuracyStars.bind(this);
+    this.getCommunicationStars = this.getCommunicationStars.bind(this);
+    this.getCleanlinessStars = this.getCleanlinessStars.bind(this);
+    this.getLocationStars = this.getLocationStars.bind(this);
+    this.getCheckInStars = this.getCheckInStars.bind(this);
+    this.getValueStars = this.getValueStars.bind(this);
+    this.getTotalStars = this.getTotalStars.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -165,6 +169,19 @@ class App extends React.Component {
     this.setState({ value: avg });
   }
 
+  handleSearch(searchedTerm) {
+    this.setState({ searchedTerm });
+  }
+
+  filterReviewsBySearchedTerm() {
+    const { searchedTerm } = this.state;
+    const { reviews } = this.state;
+    if (searchedTerm !== null) {
+      reviews.filter((review) => review.reviewText.includes(searchedTerm));
+    }
+    return reviews;
+  }
+
   render() {
     const { reviews } = this.state;
     const { accuracy } = this.state;
@@ -174,6 +191,7 @@ class App extends React.Component {
     const { location } = this.state;
     const { checkIn } = this.state;
     const { value } = this.state;
+    const reviewList = this.filterReviewsBySearchedTerm();
 
     return (
       <ReviewDiv>
@@ -189,6 +207,7 @@ class App extends React.Component {
               name="rating"
             />
           </div>
+          <Search handleSearch={this.handleSearch} />
         </MainStar>
         <StarBox>
           <LeftBox>
@@ -274,7 +293,9 @@ class App extends React.Component {
             </SecondStar>
           </RightBox>
         </StarBox>
-        <ReviewList reviews={reviews} />
+        {reviewList.length
+          ? <ReviewList reviews={reviews} />
+          : <NoResults />}
       </ReviewDiv>
     );
   }
