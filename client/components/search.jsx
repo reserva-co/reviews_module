@@ -57,9 +57,9 @@ class Search extends React.Component {
     return (
       <SearchDiv className="search-container">
         <SearchForm onSubmit={this.handleSubmit}>
-          <span role="img" aria-label="glass"> 🔍</span>
+          <span role="img" aria-label="glass" style={{ marginLeft: '13px' }}> 🔍</span>
           <input
-            style={{ border: 'none', width: '200px' }}
+            style={{ border: 'none', width: '220px' }}
             type="text"
             placeholder="Search reviews "
             value={value}
