@@ -39,7 +39,7 @@ const MainH2 = styled.h2`
   font-size: 24px;
   font-weight: 800;
   color: #484848;
-  font-style: Helvetica;
+  font-style: Roboto;
 `;
 
 const MainH3 = styled.h3`

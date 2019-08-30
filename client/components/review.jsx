@@ -14,9 +14,9 @@ const Img = styled.img`
 const TopDiv = styled.div`
   box-sizing: border-box;
   float: left;
-  font-family: Helvetica;
+  font-family: Roboto;
   letter-spacing: 1px;
-  font-size: 13px;
+  font-size: 14px;
   height: 125px;
   width: auto;
   margin-right: 80px;
