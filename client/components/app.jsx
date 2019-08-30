@@ -66,6 +66,7 @@ class App extends React.Component {
     this.getValueStars = this.getValueStars.bind(this);
     this.getTotalStars = this.getTotalStars.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
     this.sortReviewsDate = this.sortReviewsDate.bind(this);
   }
 
@@ -175,6 +176,10 @@ class App extends React.Component {
 
   handleSearch(searchedTerm) {
     this.setState({ searchedTerm });
+  }
+
+  clearSearch() {
+    this.setState({ searchedTerm: null });
   }
 
   sortReviewsDate(reviews) {
@@ -320,7 +325,7 @@ class App extends React.Component {
           )}
         {reviewList.length
           ? <ReviewList reviews={reviewList} />
-          : <NoResults searchedTerm={searchedTerm} />}
+          : <NoResults searchedTerm={searchedTerm} handleSearch={this.handleSearch} />}
       </ReviewDiv>
     );
   }

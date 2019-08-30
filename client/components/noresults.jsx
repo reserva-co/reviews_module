@@ -10,18 +10,31 @@ const NoResult = styled.div`
   margin-left: 25%;
 `;
 
+const BackSpan = styled.span`
+  color: teal;
+  margin-left: 85px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
+
 const NoResults = (props) => {
   NoResults.propTypes = {
     searchedTerm: PropTypes.string,
+    handleSearch: PropTypes.func,
   };
   NoResults.defaultProps = {
-    searchedTerm: '',
+    searchedTerm: null,
+    handleSearch: PropTypes.func,
   };
   const { searchedTerm } = props;
+  const { handleSearch } = props;
 
   return (
     <NoResult>
       <div>{`None of our guests have mentioned "${searchedTerm}"`}</div>
+      <BackSpan onClick={handleSearch}>Back to all reviews</BackSpan>
     </NoResult>
   );
 };
