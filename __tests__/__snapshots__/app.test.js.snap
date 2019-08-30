@@ -18,6 +18,7 @@ exports[`should render correctly with no props 1`] = `
       style={
         Object {
           "marginLeft": "15px",
+          "marginRight": "auto",
           "marginTop": "25px",
         }
       }
