@@ -14,6 +14,13 @@ const ReviewDiv = styled.div`
 
 const MainStar = styled.div`
   display: flex;
+  margin-top: 5px;
+`;
+
+const SecondStar = styled.div`
+  display: flex;
+  margin-top: 5px;
+  height: 30px;
 `;
 
 const StarBox = styled.div`
@@ -29,10 +36,6 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   width: 50%;
   float: right;
-`;
-
-const SecondStar = styled.div`
-  display: flex;
 `;
 
 const MainH2 = styled.h2`
@@ -63,11 +66,12 @@ class App extends React.Component {
     this.getValueStars = this.getValueStars.bind(this);
     this.getTotalStars = this.getTotalStars.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.sortReviewsDate = this.sortReviewsDate.bind(this);
   }
 
   componentDidMount() {
     $.get('/api/reviews/1', (reviews) => {
-      this.setState({ reviews });
+      this.sortReviewsDate(reviews);
       this.getAccuracyStars();
       this.getCommunicationStars();
       this.getCleanlinessStars();
@@ -173,6 +177,16 @@ class App extends React.Component {
     this.setState({ searchedTerm });
   }
 
+  sortReviewsDate(reviews) {
+    function sortFunction(a, b) {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateA < dateB ? 1 : -1;
+    }
+    const newReviews = reviews.sort(sortFunction);
+    this.setState({ reviews: newReviews });
+  }
+
   filterReviewsBySearchedTerm() {
     const { searchedTerm } = this.state;
     const { reviews } = this.state;
@@ -218,7 +232,7 @@ class App extends React.Component {
         </MainStar>
         <StarBox>
           <LeftBox>
-            <MainStar>
+            <SecondStar>
               <MainH3>Accuracy</MainH3>
               <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
                 <StarRatings
@@ -230,8 +244,8 @@ class App extends React.Component {
                   name="rating"
                 />
               </div>
-            </MainStar>
-            <MainStar>
+            </SecondStar>
+            <SecondStar>
               <MainH3>Communication</MainH3>
               <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
                 <StarRatings
@@ -243,8 +257,8 @@ class App extends React.Component {
                   name="rating"
                 />
               </div>
-            </MainStar>
-            <MainStar>
+            </SecondStar>
+            <SecondStar style={{ marginBottom: '25px' }}>
               <MainH3>Cleanliness</MainH3>
               <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
                 <StarRatings
@@ -256,7 +270,7 @@ class App extends React.Component {
                   name="rating"
                 />
               </div>
-            </MainStar>
+            </SecondStar>
           </LeftBox>
           <RightBox>
             <SecondStar>
