@@ -56,7 +56,7 @@ const users = [
   { name: 'Ghost', pic: 'https://picsum.photos/id/1043/200' },
   { name: 'Lady', pic: 'https://picsum.photos/id/1044/200' },
   { name: 'Edmure', pic: 'https://picsum.photos/id/1045/200' },
-  { name: 'Walder', pic: 'https://picsum.photos/id/107/200' },
+  { name: 'Walder', pic: 'https://picsum.photos/id/107/200/200' },
 ];
 
 const years = [2016, 2017, 2018];

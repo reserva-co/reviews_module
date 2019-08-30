@@ -40,9 +40,6 @@ exports[`should render correctly with no props 1`] = `
         typeOfWidget="Star"
       />
     </div>
-    <Search
-      handleSearch={[Function]}
-    />
   </styled.div>
   <styled.div>
     <styled.div>
@@ -242,6 +239,8 @@ exports[`should render correctly with no props 1`] = `
       </styled.div>
     </styled.div>
   </styled.div>
-  <NoResults />
+  <ReviewList
+    reviews={Array []}
+  />
 </styled.div>
 `;

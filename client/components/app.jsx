@@ -4,8 +4,6 @@ import $ from 'jquery';
 import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 import ReviewList from './reviewlist.jsx';
-import Search from './search.jsx';
-import NoResults from './noresults.jsx';
 
 const ReviewDiv = styled.div`
   display: block;
@@ -53,16 +51,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      searchedTerm: null,
     };
-    this.getAccuracyStars = this.getAccuracyStars.bind(this);
-    this.getCommunicationStars = this.getCommunicationStars.bind(this);
-    this.getCleanlinessStars = this.getCleanlinessStars.bind(this);
-    this.getLocationStars = this.getLocationStars.bind(this);
-    this.getCheckInStars = this.getCheckInStars.bind(this);
-    this.getValueStars = this.getValueStars.bind(this);
-    this.getTotalStars = this.getTotalStars.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    this.getAccuracyStars.bind(this);
+    this.getCommunicationStars.bind(this);
+    this.getCleanlinessStars.bind(this);
+    this.getLocationStars.bind(this);
+    this.getCheckInStars.bind(this);
+    this.getValueStars.bind(this);
+    this.getTotalStars.bind(this);
   }
 
   componentDidMount() {
@@ -169,26 +165,6 @@ class App extends React.Component {
     this.setState({ value: avg });
   }
 
-  handleSearch(searchedTerm) {
-    this.setState({ searchedTerm });
-  }
-
-  filterReviewsBySearchedTerm() {
-    const { searchedTerm } = this.state;
-    const { reviews } = this.state;
-    const results = [];
-    if (searchedTerm) {
-      reviews.filter((review) => {
-        if (review.reviewText.indexOf(searchedTerm) > -1) {
-          results.push(review);
-        }
-        return undefined;
-      });
-      return results;
-    }
-    return reviews;
-  }
-
   render() {
     const { reviews } = this.state;
     const { accuracy } = this.state;
@@ -198,13 +174,12 @@ class App extends React.Component {
     const { location } = this.state;
     const { checkIn } = this.state;
     const { value } = this.state;
-    const reviewList = this.filterReviewsBySearchedTerm();
 
     return (
       <ReviewDiv>
         <MainStar style={{ borderBottomStyle: 'solid', borderBottomWidth: '1px', borderBottomColor: '#e4e4e4' }}>
           <MainH2>{`${reviews.length} Reviews`}</MainH2>
-          <div style={{ marginTop: '25px', marginLeft: '15px', marginRight: 'auto' }}>
+          <div style={{ marginTop: '25px', marginLeft: '15px' }}>
             <StarRatings
               className="main-star"
               rating={totalScore}
@@ -214,7 +189,6 @@ class App extends React.Component {
               name="rating"
             />
           </div>
-          <Search handleSearch={this.handleSearch} />
         </MainStar>
         <StarBox>
           <LeftBox>
@@ -300,9 +274,7 @@ class App extends React.Component {
             </SecondStar>
           </RightBox>
         </StarBox>
-        {reviewList.length
-          ? <ReviewList reviews={reviewList} />
-          : <NoResults />}
+        <ReviewList reviews={reviews} />
       </ReviewDiv>
     );
   }
