@@ -324,7 +324,13 @@ class App extends React.Component {
             </StarBox>
           )}
         {reviewList.length
-          ? <ReviewList reviews={reviewList} />
+          ? (
+            <ReviewList
+              searchedTerm={searchedTerm}
+              clearSearch={this.clearSearch}
+              reviews={reviewList}
+            />
+          )
           : <NoResults searchedTerm={searchedTerm} clearSearch={this.clearSearch} />}
       </ReviewDiv>
     );
