@@ -64,6 +64,7 @@ const Review = (props) => {
   };
 
   const { review } = props;
+
   return (
     <TopDiv>
       <Img alt={review.custName} className="profile-pic" src={review.custPic} />
