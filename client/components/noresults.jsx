@@ -22,19 +22,19 @@ const BackSpan = styled.span`
 const NoResults = (props) => {
   NoResults.propTypes = {
     searchedTerm: PropTypes.string,
-    handleSearch: PropTypes.func,
+    clearSearch: PropTypes.func,
   };
   NoResults.defaultProps = {
     searchedTerm: null,
-    handleSearch: PropTypes.func,
+    clearSearch: PropTypes.func,
   };
   const { searchedTerm } = props;
-  const { handleSearch } = props;
+  const { clearSearch } = props;
 
   return (
     <NoResult>
       <div>{`None of our guests have mentioned "${searchedTerm}"`}</div>
-      <BackSpan onClick={handleSearch}>Back to all reviews</BackSpan>
+      <BackSpan onClick={clearSearch}>Back to all reviews</BackSpan>
     </NoResult>
   );
 };

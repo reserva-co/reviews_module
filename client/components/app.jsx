@@ -325,7 +325,7 @@ class App extends React.Component {
           )}
         {reviewList.length
           ? <ReviewList reviews={reviewList} />
-          : <NoResults searchedTerm={searchedTerm} handleSearch={this.handleSearch} />}
+          : <NoResults searchedTerm={searchedTerm} clearSearch={this.clearSearch} />}
       </ReviewDiv>
     );
   }
