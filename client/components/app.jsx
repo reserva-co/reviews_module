@@ -236,7 +236,7 @@ class App extends React.Component {
           </div>
           <Search handleSearch={this.handleSearch} />
         </MainStar>
-        {searchedTerm ? <div />
+        {searchedTerm ? null
           : (
             <StarBox>
               <LeftBox>

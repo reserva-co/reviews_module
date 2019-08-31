@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
@@ -11,9 +12,19 @@ const TopDiv = styled.div`
   box-sizing: border-box;
 `;
 
+const ResultDiv = styled.div`
+  border-bottom: 1px solid #e4e4e4;
+`;
+
+const InnerDiv = styled.div`
+  margin-left: 200px;
+`;
+
 const BackSpan = styled.span`
+  display: -webkit-box;
   color: teal;
-  margin-left: 85px;
+  margin-left: 255px;
+  margin-bottom: 25px;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -37,9 +48,20 @@ const ReviewList = (props) => {
 
   return (
     <TopDiv className="review-list">
+      {searchedTerm
+        ? (
+          <ResultDiv>
+            <InnerDiv>
+              {`${reviews.length} `}
+              of our guests have mentioned "
+              <b>{searchedTerm}</b>
+              "
+            </InnerDiv>
+            <BackSpan onClick={clearSearch}>Back to all reviews</BackSpan>
+          </ResultDiv>
+        ) : null }
       {reviews.map((review, i) => <Review key={i} review={review} />)}
       <Review review={props} />
-      {searchedTerm ? <BackSpan onClick={clearSearch}>Back to all reviews</BackSpan> : null}
     </TopDiv>
   );
 };

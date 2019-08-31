@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -33,7 +34,11 @@ const NoResults = (props) => {
 
   return (
     <NoResult>
-      <div>{`None of our guests have mentioned "${searchedTerm}"`}</div>
+      <div>
+        None of our guests have mentioned "
+        <b>{searchedTerm}</b>
+        "
+      </div>
       <BackSpan onClick={clearSearch}>Back to all reviews</BackSpan>
     </NoResult>
   );
