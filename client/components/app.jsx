@@ -242,7 +242,7 @@ class App extends React.Component {
               <LeftBox>
                 <SecondStar>
                   <MainH3>Accuracy</MainH3>
-                  <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                  <div style={{ marginTop: '10px', marginLeft: '53px', float: 'right' }}>
                     <StarRatings
                       className="secondary-star"
                       rating={accuracy}
@@ -268,7 +268,7 @@ class App extends React.Component {
                 </SecondStar>
                 <SecondStar style={{ marginBottom: '25px' }}>
                   <MainH3>Cleanliness</MainH3>
-                  <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                  <div style={{ marginTop: '10px', marginLeft: '44px', float: 'right' }}>
                     <StarRatings
                       className="secondary-star"
                       rating={cleanliness}
@@ -283,7 +283,7 @@ class App extends React.Component {
               <RightBox>
                 <SecondStar>
                   <MainH3>Location</MainH3>
-                  <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                  <div style={{ marginTop: '10px', marginLeft: '18px', float: 'right' }}>
                     <StarRatings
                       className="secondary-star"
                       rating={location}
@@ -309,7 +309,7 @@ class App extends React.Component {
                 </SecondStar>
                 <SecondStar>
                   <MainH3>Value</MainH3>
-                  <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                  <div style={{ marginTop: '10px', marginLeft: '39px', float: 'right' }}>
                     <StarRatings
                       className="secondary-star"
                       rating={value}
