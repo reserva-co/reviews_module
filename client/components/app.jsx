@@ -14,6 +14,13 @@ const ReviewDiv = styled.div`
 
 const MainStar = styled.div`
   display: flex;
+  margin-top: 5px;
+`;
+
+const SecondStar = styled.div`
+  display: flex;
+  margin-top: 5px;
+  height: 30px;
 `;
 
 const StarBox = styled.div`
@@ -29,10 +36,6 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   width: 50%;
   float: right;
-`;
-
-const SecondStar = styled.div`
-  display: flex;
 `;
 
 const MainH2 = styled.h2`
@@ -63,11 +66,13 @@ class App extends React.Component {
     this.getValueStars = this.getValueStars.bind(this);
     this.getTotalStars = this.getTotalStars.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
+    this.sortReviewsDate = this.sortReviewsDate.bind(this);
   }
 
   componentDidMount() {
     $.get('/api/reviews/1', (reviews) => {
-      this.setState({ reviews });
+      this.sortReviewsDate(reviews);
       this.getAccuracyStars();
       this.getCommunicationStars();
       this.getCleanlinessStars();
@@ -173,6 +178,20 @@ class App extends React.Component {
     this.setState({ searchedTerm });
   }
 
+  clearSearch() {
+    this.setState({ searchedTerm: null });
+  }
+
+  sortReviewsDate(reviews) {
+    function sortFunction(a, b) {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateA < dateB ? 1 : -1;
+    }
+    const newReviews = reviews.sort(sortFunction);
+    this.setState({ reviews: newReviews });
+  }
+
   filterReviewsBySearchedTerm() {
     const { searchedTerm } = this.state;
     const { reviews } = this.state;
@@ -198,6 +217,7 @@ class App extends React.Component {
     const { location } = this.state;
     const { checkIn } = this.state;
     const { value } = this.state;
+    const { searchedTerm } = this.state;
     const reviewList = this.filterReviewsBySearchedTerm();
 
     return (
@@ -216,93 +236,102 @@ class App extends React.Component {
           </div>
           <Search handleSearch={this.handleSearch} />
         </MainStar>
-        <StarBox>
-          <LeftBox>
-            <MainStar>
-              <MainH3>Accuracy</MainH3>
-              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
-                <StarRatings
-                  className="secondary-star"
-                  rating={accuracy}
-                  starDimension="20px"
-                  starRatedColor="teal"
-                  numberOfStars={5}
-                  name="rating"
-                />
-              </div>
-            </MainStar>
-            <MainStar>
-              <MainH3>Communication</MainH3>
-              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
-                <StarRatings
-                  className="secondary-star"
-                  rating={communication}
-                  starDimension="20px"
-                  starRatedColor="teal"
-                  numberOfStars={5}
-                  name="rating"
-                />
-              </div>
-            </MainStar>
-            <MainStar>
-              <MainH3>Cleanliness</MainH3>
-              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
-                <StarRatings
-                  className="secondary-star"
-                  rating={cleanliness}
-                  starDimension="20px"
-                  starRatedColor="teal"
-                  numberOfStars={5}
-                  name="rating"
-                />
-              </div>
-            </MainStar>
-          </LeftBox>
-          <RightBox>
-            <SecondStar>
-              <MainH3>Location</MainH3>
-              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
-                <StarRatings
-                  className="secondary-star"
-                  rating={location}
-                  starDimension="20px"
-                  starRatedColor="teal"
-                  numberOfStars={5}
-                  name="rating"
-                />
-              </div>
-            </SecondStar>
-            <SecondStar>
-              <MainH3>Check-In</MainH3>
-              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
-                <StarRatings
-                  className="secondary-star"
-                  rating={checkIn}
-                  starDimension="20px"
-                  starRatedColor="teal"
-                  numberOfStars={5}
-                  name="rating"
-                />
-              </div>
-            </SecondStar>
-            <SecondStar>
-              <MainH3>Value</MainH3>
-              <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
-                <StarRatings
-                  className="secondary-star"
-                  rating={value}
-                  starDimension="20px"
-                  starRatedColor="teal"
-                  numberOfStars={5}
-                  name="rating"
-                />
-              </div>
-            </SecondStar>
-          </RightBox>
-        </StarBox>
+        {searchedTerm ? null
+          : (
+            <StarBox>
+              <LeftBox>
+                <SecondStar>
+                  <MainH3>Accuracy</MainH3>
+                  <div style={{ marginTop: '10px', marginLeft: '53px', float: 'right' }}>
+                    <StarRatings
+                      className="secondary-star"
+                      rating={accuracy}
+                      starDimension="20px"
+                      starRatedColor="teal"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </div>
+                </SecondStar>
+                <SecondStar>
+                  <MainH3>Communication</MainH3>
+                  <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                    <StarRatings
+                      className="secondary-star"
+                      rating={communication}
+                      starDimension="20px"
+                      starRatedColor="teal"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </div>
+                </SecondStar>
+                <SecondStar style={{ marginBottom: '25px' }}>
+                  <MainH3>Cleanliness</MainH3>
+                  <div style={{ marginTop: '10px', marginLeft: '44px', float: 'right' }}>
+                    <StarRatings
+                      className="secondary-star"
+                      rating={cleanliness}
+                      starDimension="20px"
+                      starRatedColor="teal"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </div>
+                </SecondStar>
+              </LeftBox>
+              <RightBox>
+                <SecondStar>
+                  <MainH3>Location</MainH3>
+                  <div style={{ marginTop: '10px', marginLeft: '18px', float: 'right' }}>
+                    <StarRatings
+                      className="secondary-star"
+                      rating={location}
+                      starDimension="20px"
+                      starRatedColor="teal"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </div>
+                </SecondStar>
+                <SecondStar>
+                  <MainH3>Check-In</MainH3>
+                  <div style={{ marginTop: '10px', marginLeft: '15px', float: 'right' }}>
+                    <StarRatings
+                      className="secondary-star"
+                      rating={checkIn}
+                      starDimension="20px"
+                      starRatedColor="teal"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </div>
+                </SecondStar>
+                <SecondStar>
+                  <MainH3>Value</MainH3>
+                  <div style={{ marginTop: '10px', marginLeft: '39px', float: 'right' }}>
+                    <StarRatings
+                      className="secondary-star"
+                      rating={value}
+                      starDimension="20px"
+                      starRatedColor="teal"
+                      numberOfStars={5}
+                      name="rating"
+                    />
+                  </div>
+                </SecondStar>
+              </RightBox>
+            </StarBox>
+          )}
         {reviewList.length
-          ? <ReviewList reviews={reviewList} />
-          : <NoResults />}
+          ? (
+            <ReviewList
+              searchedTerm={searchedTerm}
+              clearSearch={this.clearSearch}
+              reviews={reviewList}
+            />
+          )
+          : <NoResults searchedTerm={searchedTerm} clearSearch={this.clearSearch} />}
       </ReviewDiv>
     );
   }

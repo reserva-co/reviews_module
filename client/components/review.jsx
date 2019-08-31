@@ -16,7 +16,7 @@ const TopDiv = styled.div`
   float: left;
   font-family: Roboto;
   letter-spacing: 1px;
-  font-size: 14px;
+  font-size: 16px;
   height: 125px;
   width: auto;
   margin-right: 80px;
@@ -38,7 +38,7 @@ const UserDiv = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
   height: 19px;
   margin-bottom: 3px;
 `;
@@ -64,6 +64,7 @@ const Review = (props) => {
   };
 
   const { review } = props;
+
   return (
     <TopDiv>
       <Img alt={review.custName} className="profile-pic" src={review.custPic} />
