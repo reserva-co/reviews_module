@@ -1,9 +1,10 @@
 module.exports = {
   mode: 'development',
-  entry: './client/index.js',
+  entry: './client/components/app.jsx',
   output: {
     path: `${__dirname}/public`,
     filename: 'bundle.js',
+    library: 'Reviews',
   },
   module: {
     rules: [

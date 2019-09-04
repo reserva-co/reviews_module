@@ -71,7 +71,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.get('/api/reviews/1', (reviews) => {
+    const { id } = this.props;
+    $.get(`http://localhost:3001/api/reviews/${id || 1}`, (reviews) => {
       this.sortReviewsDate(reviews);
       this.getAccuracyStars();
       this.getCommunicationStars();
