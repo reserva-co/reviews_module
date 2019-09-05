@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unescaped-entities */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 const NoResult = styled.div`
   font-family: Roboto;

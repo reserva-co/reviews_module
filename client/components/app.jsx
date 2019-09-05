@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
+/* eslint-disable no-undef */
+
 import React from 'react';
 import $ from 'jquery';
 import StarRatings from 'react-star-ratings';
-import styled from 'styled-components';
 import ReviewList from './reviewlist.jsx';
 import Search from './search.jsx';
 import NoResults from './noresults.jsx';
